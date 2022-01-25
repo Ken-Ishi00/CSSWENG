@@ -4,16 +4,124 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <script src="./script.js" defer></script>
     <link href="./styles.css" rel="stylesheet">
-    <title>Hello World!</title>
+    <title>Estimator</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
-
+    <ul class="tabs">
+      <li data-tab-target="#canvas" class="active tab">Canvas</li>
+      <li data-tab-target="#estimate" class="tab">Estimate</li>
+    </ul>
+    
+    <div class="tab-content">
+      <div id="canvas" data-tab-content class="active">
+        <h1>Canvas items</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>
+                <input type="text" class="search-input" placeholder="Item">
+              </th>
+              <th>
+                <input type="text" class="search-input" placeholder="Name">
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Hammer</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Quick Cement</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Sandbag</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Manhole Cover</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Woodplank</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="estimate" data-tab-content>
+        <h1>Estimate items</h1>
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Description</th>
+              <th>Qty</th>
+              <th>Unit</th>
+              <th>Labor Unit Cost</th>
+              <th>Labor Amount Cost</th>
+              <th>Material Unit Cost</th>
+              <th>Material Amount Cost</th>
+              <th>Total</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Manhole Cover</td>
+              <td>3</td>
+              <td>kg</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>
+                <button class="button-3" role="button" style="float: right">Add</button>
+                <button class="button-3" role="button" style="float: right">Delete</button>
+                <button class="button-3" role="button" style="float: right">Edit</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Wood</td>
+              <td>3</td>
+              <td>kg</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>
+                <button class="button-3" role="button" style="float: right">Add</button>
+                <button class="button-3" role="button" style="float: right">Delete</button>
+                <button class="button-3" role="button" style="float: right">Edit</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Cement</td>
+              <td>3</td>
+              <td>kg</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>
+                <button class="button-3" role="button" style="float: right">Add</button>
+                <button class="button-3" role="button" style="float: right">Delete</button>
+                <button class="button-3" role="button" style="float: right">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
   </body>
 </html>
