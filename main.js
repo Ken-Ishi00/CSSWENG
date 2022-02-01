@@ -1,6 +1,61 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
+const {google} = require('googleapis')
+const keys = require('./keys.json')
+
+const client = new google.auth.JWT(
+    keys.client_email,
+    null,
+    keys.private_key,
+    ['https://www.googleapis.com/auth/spreadsheets']
+)
+
+client.authorize(function (err, tokens) {
+    if (err) {
+        console.log(err)
+        return
+    } else {
+        console.log('Connected')
+    }
+})
+
+async function gsget (cl) {
+    const gsapi = google.sheets({version: 'v4', auth: cl})
+    
+    const opt = {
+        spreadsheetId: '1jq8w8X7Sc1aSuWRNMP4d6XHJrsPsF7c1ocV_zOrXfgY',
+        range: 'Data'
+    }
+    
+    let data = await gsapi.spreadsheets.values.get(opt)
+    let dataArray = data.data.values
+    
+    return dataArray
+}
+
+async function gsupdate (cl, dataArray) {
+    const gsapi = google.sheets({version: 'v4', auth: cl})
+    
+    const updateOptions = {
+        spreadsheetId: '1jq8w8X7Sc1aSuWRNMP4d6XHJrsPsF7c1ocV_zOrXfgY',
+        range: 'Data',
+        valueInputOption: 'USER_ENTERED',
+        resource: {values: dataArray}
+    }
+    
+    let res = await gsapi.spreadsheets.values.update(updateOptions);
+}
+
+ipcMain.on('get-data', (event, arg) => {
+    const dataArray = gsget(client)
+    console.log(dataArray);
+    event.reply('receive-data', dataArray)
+})
+
+ipcMain.on('update-data', (event, arg) => {
+    gsupdate(client, arg)
+})
 
 function createWindow () {
   // Create the browser window.
