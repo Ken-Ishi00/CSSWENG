@@ -5,6 +5,7 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <script src="./script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
     <link href="./styles.css" rel="stylesheet">
     <title>Estimator</title>
   </head>
@@ -13,44 +14,50 @@
       <li data-tab-target="#canvas" class="active tab">Canvas</li>
       <li data-tab-target="#estimate" class="tab">Estimate</li>
     </ul>
-    
+
     <div class="tab-content">
       <div id="canvas" data-tab-content class="active">
-        <h1>Canvas items</h1>
+        <h1 id="canvas-title">Canvas items</h1>
         <table class="table">
           <thead>
             <tr>
               <th>
-                <input type="text" class="search-input" placeholder="Item">
               </th>
               <th>
-                <input type="text" class="search-input" placeholder="Name">
+                <h2>Item Name</h2>
+              </th>
+              <th>
+                <h2>Unit</h2>
+              </th>
+              <th>
+                <h2>Labor Unit Cost</h2>
+              </th>
+              <th>
+                <h2>Material Unit Cost</h2>
               </th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td>Hammer</td>
+              <td><input type="text" class="search-input item-name" placeholder="Hammer"></td>
+              <td><input type="text" class="search-input item-unit" placeholder="kg"></td>
+              <td><input type="text" class="search-input item-LUC" placeholder="12"></td>
+              <td><input type="text" class="search-input item-MUC" placeholder="21"></td>
             </tr>
             <tr>
               <td>2</td>
-              <td>Quick Cement</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Sandbag</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Manhole Cover</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Woodplank</td>
+              <td><input type="text" class="search-input item-name" placeholder="Wooden Planks"></td>
+              <td><input type="text" class="search-input item-unit" placeholder="kg"></td>
+              <td><input type="text" class="search-input item-LUC" placeholder="13"></td>
+              <td><input type="text" class="search-input item-MUC" placeholder="31"></td>
             </tr>
           </tbody>
         </table>
+
+        <div id="add-item">
+          test
+        </div>
       </div>
       <div id="estimate" data-tab-content>
         <h1>Estimate items</h1>

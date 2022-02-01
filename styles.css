@@ -1,60 +1,61 @@
 * {
     font-family: sans-serif; /* Change your font family */
   }
-  
-  .content-table {
+
+  . {
     border-collapse: collapse;
     margin-left: auto;
     margin-right: auto;
     font-size: 0.9em;
     min-width: 400px;
+
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   }
-  
+
   .content-table thead tr {
     background-color: #009879;
     color: #ffffff;
     text-align: left;
     font-weight: bold;
   }
-  
+
   .content-table th,
   .content-table td {
     padding: 12px 15px;
   }
-  
+
   .content-table tbody tr {
     border-bottom: 1px solid #dddddd;
   }
-  
+
   .content-table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
   }
-  
+
   .content-table tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
   }
-  
+
   .content-table tbody tr.active-row {
     font-weight: bold;
     color: #009879;
   }
-  
+
 [data-tab-content] {
     display: none;
   }
-  
+
   .active[data-tab-content] {
     display: block;
   }
-  
+
   body {
     padding: 0;
     margin: 0;
   }
-  
+
   .tabs {
     display: flex;
     justify-content: space-around;
@@ -67,20 +68,20 @@
     text-align: left;
     font-weight: bold;
   }
-  
+
   .tab {
     cursor: pointer;
     padding: 10px;
   }
-  
+
   .tab.active {
     background-color: #CCC;
   }
-  
+
   .tab:hover {
     background-color: #AAA;
   }
-  
+
   .tab-content {
     margin-left: 20px;
     margin-right: 20px;
@@ -139,25 +140,43 @@
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
 
+#canvas-title{
+  padding-left: 40%;
+}
+
 .table {
   font-family: "Fira Sans", sans-serif;
   border-collapse: collapse;
+  width: 75%;
+  max-width: 100%;
+  white-space: nowrap;
 }
 
 .table th {
   text-align: left;
   border-top: 2px solid #009578;
   border-bottom: 2px solid #009578;
+  width:100px;
 }
 
 .table td,
 .search-input {
   font-size: 1em;
-  padding: 0.6em 1em;
+  padding: 0.6em;
 }
 
 .search-input {
   border: none;
   outline: none;
   font-family: "Fira Sans", sans-serif;
+}
+
+#add-item{
+  position: fixed;
+  top:70px;
+  right:0;
+  width:25%;
+  height:90%;
+
+  background-color:black;
 }
