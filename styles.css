@@ -198,8 +198,19 @@
 
 #submit{
   margin-left:35%;
-  margin-top: 27px;
+  margin-top: 21px;
   width:120px;
   height:35px;
   font-size:130%;
+}
+
+#error-form{
+  margin:auto;
+  margin-top: 10px;
+  text-align: center;
+  background-color: #FF7878;
+  width:55%;
+  padding-top:4px;
+  padding-bottom:4px;
+  border-radius:2px;
 }
