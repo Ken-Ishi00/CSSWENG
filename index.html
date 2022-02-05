@@ -5,7 +5,8 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <script src="./script.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="./add-item-script.js" defer></script>
     <link href="./styles.css" rel="stylesheet">
     <title>Estimator</title>
   </head>
@@ -37,21 +38,8 @@
               </th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td><input type="text" class="search-input item-name" placeholder="Hammer"></td>
-              <td><input type="text" class="search-input item-unit" placeholder="kg"></td>
-              <td><input type="text" class="search-input item-LUC" placeholder="12"></td>
-              <td><input type="text" class="search-input item-MUC" placeholder="21"></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td><input type="text" class="search-input item-name" placeholder="Wooden Planks"></td>
-              <td><input type="text" class="search-input item-unit" placeholder="kg"></td>
-              <td><input type="text" class="search-input item-LUC" placeholder="13"></td>
-              <td><input type="text" class="search-input item-MUC" placeholder="31"></td>
-            </tr>
+          <tbody id="item-list">
+
           </tbody>
         </table>
 
@@ -62,21 +50,17 @@
             <form id="add-form">
               <label for="item-name-form">Item Name:</label><br>
               <input type="text" id="item-name-form" name="item-name-form" class="add-form-input"><br>
-              <label for="quantity-form">Quantity:</label><br>
-              <input type="text" id="quantity-form" name="quantity-form" class="add-form-input"><br>
               <label for="unit-form">Unit:</label><br>
               <input type="text" id="unit-form" name="unit-form" class="add-form-input"><br>
               <label for="labor-unit-cost-form">Labor Unit Cost:</label><br>
-              <input type="text" id="labor-unit-cost-form" name="labor-unit-cost-form" class="add-form-input"><br>
-              <label for="labor-amount-cost-form">Labor Amount Cost:</label><br>
-              <input type="text" id="labor-amount-cost-form" name="labor-amount-cost-form" class="add-form-input"><br>
+              <input type="number" id="labor-unit-cost-form" name="labor-unit-cost-form" class="add-form-input"><br>
               <label for="material-unit-cost-form">Material Unit Cost:</label><br>
-              <input type="text" id="material-unit-cost-form" name="material-unit-cost-form" class="add-form-input"><br>
-              <label for="material-amount-cost-form">Material Amount Cost:</label><br>
-              <input type="text" id="material-amount-cost-form" name="material-amount-cost-form" class="add-form-input"><br>
+              <input type="number" id="material-unit-cost-form" name="material-unit-cost-form" class="add-form-input"><br>
 
               <input type="button" name="submit" id="submit" value="Submit">
             </form>
+
+            <p id="error-form"></p>
           </div>
         </div>
       </div>
