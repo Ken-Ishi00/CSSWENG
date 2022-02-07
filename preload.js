@@ -1,5 +1,15 @@
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
+const { contextBridge, ipcRenderer } = require('electron')
+
+contextBridge.exposeInMainWorld(
+    'gsheets',
+    {
+        getData: () => ipcRenderer.invoke('get-data'),
+        updateData: (dataArray) => ipcRenderer.send('update-data', dataArray)
+    }
+)
+
 window.addEventListener('DOMContentLoaded', () => {
   const replaceText = (selector, text) => {
     const element = document.getElementById(selector)

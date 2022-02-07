@@ -47,10 +47,10 @@ async function gsupdate (cl, dataArray) {
     let res = await gsapi.spreadsheets.values.update(updateOptions);
 }
 
-ipcMain.on('get-data', (event, arg) => {
+ipcMain.handle('get-data', async (event, arg) => {
     const dataArray = gsget(client)
-    console.log(dataArray);
-    event.reply('receive-data', dataArray)
+    console.log(dataArray)
+    return dataArray
 })
 
 ipcMain.on('update-data', (event, arg) => {
