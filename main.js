@@ -48,8 +48,7 @@ async function gsupdate (cl, dataArray) {
 }
 
 ipcMain.handle('get-data', async (event, arg) => {
-    const dataArray = gsget(client)
-    console.log(dataArray)
+    const dataArray = await gsget(client)
     return dataArray
 })
 

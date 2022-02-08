@@ -5,7 +5,7 @@ const { contextBridge, ipcRenderer } = require('electron')
 contextBridge.exposeInMainWorld(
     'gsheets',
     {
-        getData: () => ipcRenderer.invoke('get-data'),
+        getData: async () => { return await ipcRenderer.invoke('get-data') },
         updateData: (dataArray) => ipcRenderer.send('update-data', dataArray)
     }
 )
