@@ -28,6 +28,7 @@ $("#submit").click(function(){
             <td class="item item-unit">${cItemUnit}</td>
             <td class="item item-LUC">${cItemLUC}</td>
             <td class="item item-MUC">${cItemMUC}</td>
+            <td><button id="${i}-edit" type="button" onclick="editFunction()">Edit</button></td>
           </tr>
         `);
 
@@ -35,21 +36,6 @@ $("#submit").click(function(){
         $("#unit-form").val("");
         $("#labor-unit-cost-form").val("");
         $("#material-unit-cost-form").val("");
-
-        document.querySelectorAll("table tr td").forEach(function(node){
-        	node.ondblclick=function(){
-        		var val=this.innerHTML;
-        		var input=document.createElement("input");
-        		input.value=val;
-        		input.onblur=function(){
-        			var val=this.value;
-        			this.parentNode.innerHTML=val;
-        		}
-        		this.innerHTML="";
-        		this.appendChild(input);
-        		input.focus();
-        	}
-        });
     }
   }
 });
