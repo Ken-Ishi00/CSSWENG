@@ -46,6 +46,9 @@ $("#submit").click(function(){
 
         dataArray.push(tempArray);
         window.gsheets.updateData(dataArray);
+
+        $("#submit").click(window.location.reload());
+
     }
   }
 });
