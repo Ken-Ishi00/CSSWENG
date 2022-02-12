@@ -28,14 +28,24 @@ $("#submit").click(function(){
             <td class="item item-unit">${cItemUnit}</td>
             <td class="item item-LUC">${cItemLUC}</td>
             <td class="item item-MUC">${cItemMUC}</td>
-            <td><button id="${i}-edit" type="button" onclick="editFunction()">Edit</button></td>
+            <td><button id="${dataArray.length + 1}-edit" class="editButton" type="button" onclick="editFunction()">Edit</button></td>
           </tr>
         `);
+
+        var tempArray = [
+          $("#item-name-form").val(),
+          $("#unit-form").val(),
+          $("#labor-unit-cost-form").val(),
+          $("#material-unit-cost-form").val()
+        ];
 
         $("#item-name-form").val("");
         $("#unit-form").val("");
         $("#labor-unit-cost-form").val("");
         $("#material-unit-cost-form").val("");
+
+        dataArray.push(tempArray);
+        window.gsheets.updateData(dataArray);
     }
   }
 });
