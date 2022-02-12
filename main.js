@@ -29,7 +29,7 @@ async function gsget (cl) {
     }
     
     let data = await gsapi.spreadsheets.values.get(opt)
-    let dataArray = data.data.values
+    let dataArray = data.data.values || []
     
     return dataArray
 }
