@@ -48,7 +48,6 @@ $("#submit").click(function(){
         window.gsheets.updateData(dataArray);
 
         $("#submit").click(window.location.reload());
-
     }
   }
 });

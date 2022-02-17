@@ -34,7 +34,7 @@ async function initializeData() {
           $(`#${i}-edit`).replaceWith('<input type="submit" class="editButton" form="' + i + '-editForm" value="Save">' + '</input>');
 
 
-          $(`#${i}-editForm`).submit(function() {
+          $(`#${i}-editForm`).submit(function(e) {
             dataArray[i][0] = $("#tempName").val();
             $(`#${i}-Name`).html($("#tempName").val());
             dataArray[i][1] = $("#tempUnit").val();
@@ -45,6 +45,7 @@ async function initializeData() {
             $(`#${i}-MUC`).html($("#tempMUC").val());
             $(`#${i}-edit`).replaceWith('<input type="submit" form="' + i + '-editForm" value="Save">' + '</input>');
             window.gsheets.updateData(dataArray);
+            e.preventDefault();
           });
         });
     });
