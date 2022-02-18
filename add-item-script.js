@@ -28,7 +28,10 @@ $("#submit").click(function(){
             <td class="item item-unit">${cItemUnit}</td>
             <td class="item item-LUC">${cItemLUC}</td>
             <td class="item item-MUC">${cItemMUC}</td>
-            <td><button id="${dataArray.length + 1}-edit" class="editButton" type="button" onclick="editFunction()">Edit</button></td>
+            <td>
+              <button id="${dataArray.length + 1}-edit" class="editButton" type="button" onclick="editFunction()">Edit</button>
+              <button id="${dataArray.length + 1}-del" class="delButton" type="button" onclick="delFunction()">Delete</button>
+            </td>
           </tr>
         `);
 

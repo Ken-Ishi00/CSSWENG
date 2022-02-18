@@ -15,14 +15,17 @@ async function initializeData() {
         var cItemMUC = item[3]? item[3]:"";
 
         $("#item-list").append(
-            `<tr>
+            `<tr id="item-${i}">
                 <td></td>
                 <form id="${i}-editForm"></form>
                 <td id="${i}-Name" class="item item-name">${cItemName}</td>
                 <td id="${i}-unit" class="item item-unit">${cItemUnit}</td>
                 <td id="${i}-LUC" class="item item-LUC">${cItemLUC}</td>
                 <td id="${i}-MUC" class="item item-MUC">${cItemMUC}</td>
-                <td><button id="${i}-edit" class="editButton" type="button">Edit</button></td>
+                <td>
+                  <button id="${i}-edit" class="editButton" type="button">Edit</button>
+                  <button id="${i}-del" class="delButton" type="button">Delete</button>
+                </td>
             </tr>`
         );
 
@@ -31,7 +34,7 @@ async function initializeData() {
           $(`#${i}-unit`).html($(`<input type="text" id="tempUnit" placeholder="${cItemUnit}" form="${i}-editForm">` + `</input>`));
           $(`#${i}-LUC`).html($(`<input type="text" id="tempLUC" placeholder="${cItemLUC}" form="${i}-editForm">` + `</input>`));
           $(`#${i}-MUC`).html($(`<input type="text" id="tempMUC" placeholder="${cItemMUC}" form="${i}-editForm">` + `</input>`));
-          $(`#${i}-edit`).replaceWith('<input type="submit" class="editButton" form="' + i + '-editForm" value="Save">' + '</input>');
+          $(`#${i}-edit`).replaceWith('<input id="save" type="submit" class="editButton" form="' + i + '-editForm" value="Save">' + '</input>');
 
 
           $(`#${i}-editForm`).submit(function(e) {
@@ -43,10 +46,17 @@ async function initializeData() {
             $(`#${i}-LUC`).html($("#tempLUC").val());
             dataArray[i][3] = $("#tempMUC").val();
             $(`#${i}-MUC`).html($("#tempMUC").val());
-            $(`#${i}-edit`).replaceWith('<input type="submit" form="' + i + '-editForm" value="Save">' + '</input>');
+            $("#save").replaceWith('<button id="' + i + '-edit" class="editButton" type="button">Edit</button>');
             window.gsheets.updateData(dataArray);
             e.preventDefault();
           });
+        });
+
+        $(`#${i}-del`).click(function() {
+          $(`#item-${i}`).remove();
+          dataArray.splice(i, 1);
+          window.gsheets.updateData(dataArray);
+          console.table(dataArray);
         });
     });
 
