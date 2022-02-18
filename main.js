@@ -47,6 +47,29 @@ async function gsupdate (cl, dataArray) {
     let res = await gsapi.spreadsheets.values.update(updateOptions);
 }
 
+async function gsdelete (cl, index) {
+  const gsapi = google.sheets({version: 'v4', auth: cl})
+    
+  let batchUpdateRequest = {
+    'requests': [
+      {
+        'deleteDimension': {
+          'range': {
+            'dimension': "ROWS",
+            'startIndex': index,
+            'endIndex': index + 1
+          }
+        }
+      }
+    ]
+  }
+  
+  gsapi.spreadsheets.batchUpdate({
+    spreadsheetId: '1jq8w8X7Sc1aSuWRNMP4d6XHJrsPsF7c1ocV_zOrXfgY',
+    resource: batchUpdateRequest
+  })
+}
+
 ipcMain.handle('get-data', async (event, arg) => {
     const dataArray = await gsget(client)
     return dataArray
@@ -54,6 +77,10 @@ ipcMain.handle('get-data', async (event, arg) => {
 
 ipcMain.on('update-data', (event, arg) => {
     gsupdate(client, arg)
+})
+
+ipcMain.on('delete-row', (event, arg) => {
+  gsdelete(client, arg)
 })
 
 function createWindow () {

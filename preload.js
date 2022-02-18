@@ -6,7 +6,8 @@ contextBridge.exposeInMainWorld(
     'gsheets',
     {
         getData: async () => { return await ipcRenderer.invoke('get-data') },
-        updateData: (dataArray) => ipcRenderer.send('update-data', dataArray)
+        updateData: (dataArray) => ipcRenderer.send('update-data', dataArray),
+        deleteRow: (row) => ipcRenderer.send('delete-row', row)
     }
 )
 

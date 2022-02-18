@@ -55,8 +55,7 @@ async function initializeData() {
         $(`#${i}-del`).click(function() {
           $(`#item-${i}`).remove();
           dataArray.splice(i, 1);
-          window.gsheets.updateData(dataArray);
-          console.table(dataArray);
+          window.gsheets.deleteRow(i);
         });
     });
 
