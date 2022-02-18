@@ -7,6 +7,7 @@
     <script src="./renderer.js" defer></script>
     <script src="./script.js" defer></script>
     <script src="./jquery-3.6.0.min.js"></script>
+    <script src="./estimate-script.js" defer></script>
     <script src="./add-item-script.js" defer></script>
     <link href="./styles.css" rel="stylesheet">
     <title>Estimator</title>
@@ -67,73 +68,45 @@
         </div>
       </div>
       <div id="estimate" data-tab-content>
-        <h1>Estimate items</h1>
-        <table class="content-table">
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Description</th>
-              <th>Qty</th>
-              <th>Unit</th>
-              <th>Labor Unit Cost</th>
-              <th>Labor Amount Cost</th>
-              <th>Material Unit Cost</th>
-              <th>Material Amount Cost</th>
-              <th>Total</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Manhole Cover</td>
-              <td>3</td>
-              <td>kg</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>
-                <button class="button-3" role="button" style="float: right">Add</button>
-                <button class="button-3" role="button" style="float: right">Delete</button>
-                <button class="button-3" role="button" style="float: right">Edit</button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Wood</td>
-              <td>3</td>
-              <td>kg</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>
-                <button class="button-3" role="button" style="float: right">Add</button>
-                <button class="button-3" role="button" style="float: right">Delete</button>
-                <button class="button-3" role="button" style="float: right">Edit</button>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Cement</td>
-              <td>3</td>
-              <td>kg</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>
-                <button class="button-3" role="button" style="float: right">Add</button>
-                <button class="button-3" role="button" style="float: right">Delete</button>
-                <button class="button-3" role="button" style="float: right">Edit</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div id="est-main">
+          <div id="est-title-div">
+            <h1 id="est-title">Estimate items</h1>
+            <button class="est-button">Save</button>
+            <button class="est-button">Load</button>
+            <button class="est-button">Export</button>
+          </div>
+        <div id="est-table">
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th width="1%">#</th>
+                <th width="20%">Name</th>
+                <th width="1%">Qty</th>
+                <th width="1%">Unit</th>
+                <th width="15%">Labor Unit Cost</th>
+                <th width="15%">Labor Amount Cost</th>
+                <th width="15%">Material Unit Cost</th>
+                <th width="15%">Material Amount Cost</th>
+                <th width="1%">Total</th>
+                <th width="1%">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="est-list">
+
+            </tbody>
+          </table>
+        </div>
+        </div>
+
+        <div id="add-item-est">
+          <h1 id="add-est-title">Add Item</h1>
+          <table id="add-est-table">
+            <tbody id="estimate-list">
+
+            </tbody>
+          </table>
+        </div>
+
       </div>
     </div>
     <!-- You can also require other files to run in this process -->

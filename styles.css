@@ -21,9 +21,12 @@
     font-weight: bold;
   }
 
-  .content-table th,
-  .content-table td {
-    padding: 12px 15px;
+  .content-table {
+    width:75%;
+  }
+
+  .content-table th{
+    padding:7px;
   }
 
   .content-table tbody tr {
@@ -89,7 +92,7 @@
 
 
 /* CSS */
-.button-3, .editButton, .saveButton, .delButton {
+.button-3, .editButton, .saveButton, .delButton, .est-button, .est-delButton {
   appearance: none;
   background-color: #2ea44f;
   border: 1px solid rgba(27, 31, 35, .15);
@@ -119,8 +122,12 @@
   outline: none;
 }
 
-.button-3:hover {
+.button-3:hover, .editButton:hover {
   background-color: #2c974b;
+}
+
+.est-delButton:hover, .delButton:hover{
+  background-color:#AF0E0E;
 }
 
 .button-3:focus {
@@ -147,8 +154,7 @@
 .table {
   font-family: "Fira Sans", sans-serif;
   border-collapse: collapse;
-  width: 75%;
-  max-width: 100%;
+  width:75%;
   white-space: nowrap;
 }
 
@@ -171,7 +177,7 @@
   font-family: "Fira Sans", sans-serif;
 }
 
-#add-item{
+#add-item, #add-item-est{
   position: fixed;
   top:120px;
   right:0;
@@ -184,7 +190,7 @@
   padding-right:30px;
 }
 
-#add-item-title{
+#add-item-title, #add-est-title{
   margin-top:35px;
   padding-bottom:20px;
   text-align: center;
@@ -219,10 +225,41 @@
   width:100px;
 }
 
-.delButton{
+.delButton, .est-delButton{
   background-color: #CB0F0F;
 }
 
-.saveButton{
+.saveButton, .est-saveButton{
   display:none;
+}
+
+#est-table{
+  margin-top:20px;
+}
+
+#add-item-est{
+  height:87%;
+}
+
+#add-est-table tbody tr:nth-of-type(even){
+  background-color:#E3E3E3;
+  border-spacing: 0;
+}
+
+.est-items{
+
+}
+
+.add-est-name{
+  padding-left:10px;
+  width:310px;
+  font-weight: bold;
+}
+
+.est-index{
+  font-weight: bold;
+}
+
+.est-EditButton, .est-delButton{
+  width:100px;
 }

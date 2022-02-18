@@ -14,6 +14,19 @@ async function initializeData() {
         var cItemLUC = item[2]? item[2]:"";
         var cItemMUC = item[3]? item[3]:"";
 
+        //ADD ITEM LIST FOR ESTIMATE SAME AS BELOW
+
+        $("#estimate-list").append(
+          `
+          <tr id="est-item-${i}" class="est-items">
+                <td class="est-index">${i+1}</td>
+                <td id="est-${i}-Name" class="add-est-name">${cItemName}</td>
+                <td>
+                  <button id="${i}-est-add" class="button-3">Add</button>
+                </td>
+              </tr>`
+        );
+
         $("#item-list").append(
             `<tr id="item-${i}">
                 <td></td>
@@ -41,8 +54,6 @@ async function initializeData() {
           $(`#${i}-MUC`).html($(`<input type="text" id="tempMUC" value="${tempValMUC}" form="${i}-editForm">` + `</input>`));
           $(`#${i}-edit`).hide();
           $(`#${i}-save`).show();
-          //$(`#${i}-edit`).replaceWith('<input id="save" type="submit" class="editButton" form="' + i + '-editForm" value="Save">' + '</input>');
-
 
           $(`#${i}-editForm`).submit(function(e) {
             dataArray[i][0] = $("#tempName").val();
@@ -60,7 +71,6 @@ async function initializeData() {
 
             $(`#${i}-edit`).show();
             $(`#${i}-save`).hide();
-            //$("#save").replaceWith('<button id="' + i + '-edit" class="editButton" type="button">Edit</button>');
             window.gsheets.updateData(dataArray);
             e.preventDefault();
           });
@@ -70,6 +80,71 @@ async function initializeData() {
           $(`#item-${i}`).remove();
           dataArray.splice(i, 1);
           window.gsheets.deleteRow(i);
+        });
+
+        function exists(arr, search){
+          return arr.some(row => row.includes(search));
+        }
+
+        $(`#${i}-est-add`).click(function(){
+          if(!exists(estArray, $(`#${i}-Name`).html()))
+          {
+            var estName = $(`#${i}-Name`).html();
+            var estUnit = $(`#${i}-unit`).html();
+            var estLUC = parseInt($(`#${i}-LUC`).html());
+            var estMUC = parseInt($(`#${i}-MUC`).html());
+            var estTotal = estLUC + estMUC;
+            $("#est-list").append(
+              `<tr>
+                <form id="${estSize-1}-est-editForm"></form>
+                <td>${estSize}</td>
+                <td>${estName}</td>
+                <td id="${estSize-1}-est-qty">1</td>
+                <td>${estUnit}</td>
+                <td>${estLUC}</td>
+                <td id="${estSize-1}-est-LAC">${estLUC}</td>
+                <td>${estMUC}</td>
+                <td id="${estSize-1}-est-MAC">${estMUC}</td>
+                <td id="${estSize-1}-est-total">${estTotal}</td>
+                <td>
+                  <input id="${i}-est-save" type="submit" class="button-3 est-saveButton" form="${estSize-1}-est-editForm" style="float: right" value="Save"></input>
+                  <button id="${i}-est-edit" class="button-3 est-EditButton" role="button" style="float: right">Edit Qty</button>
+                  <button id="${i}-est-delete" class="est-delButton" role="button" style="float: right">Delete</button>
+                </td>
+              </tr>
+              `
+            );
+            var tempEstArray = [
+              estName,
+              1,
+              estUnit,
+              estLUC,
+              estLUC,
+              estMUC,
+              estMUC,
+              estTotal
+            ];
+            estArray.push(tempEstArray);
+            estSize++;
+          }
+          else
+          {
+            for(n=0;n<estArray.length;n++)
+            {
+              if(estArray[n][0] == $(`#${i}-Name`).html())
+              {
+                estArray[n][1]++;
+                estArray[n][4] = estArray[n][3] * estArray[n][1];
+                estArray[n][6] = estArray[n][5] * estArray[n][1];
+                estArray[n][7] = estArray[n][6] + estArray[n][4];
+                $(`#${n}-est-qty`).html(estArray[n][1]);
+                $(`#${n}-est-LAC`).html(estArray[n][4]);
+                $(`#${n}-est-MAC`).html(estArray[n][6]);
+                $(`#${n}-est-total`).html(estArray[n][7]);
+                estSize++;
+              }
+            }
+          }
         });
     });
 
