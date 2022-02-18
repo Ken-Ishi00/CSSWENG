@@ -24,29 +24,43 @@ async function initializeData() {
                 <td id="${i}-MUC" class="item item-MUC">${cItemMUC}</td>
                 <td>
                   <button id="${i}-edit" class="editButton" type="button">Edit</button>
+                  <input id="${i}-save" type="submit" class="saveButton" form="${i}-editForm" value="Save"></input>
                   <button id="${i}-del" class="delButton" type="button">Delete</button>
                 </td>
             </tr>`
         );
 
         $(`#${i}-edit`).click(function() {
-          $(`#${i}-Name`).html($(`<input type="text" id="tempName" placeholder="${cItemName}" form="${i}-editForm">` + `</input>`));
-          $(`#${i}-unit`).html($(`<input type="text" id="tempUnit" placeholder="${cItemUnit}" form="${i}-editForm">` + `</input>`));
-          $(`#${i}-LUC`).html($(`<input type="text" id="tempLUC" placeholder="${cItemLUC}" form="${i}-editForm">` + `</input>`));
-          $(`#${i}-MUC`).html($(`<input type="text" id="tempMUC" placeholder="${cItemMUC}" form="${i}-editForm">` + `</input>`));
-          $(`#${i}-edit`).replaceWith('<input id="save" type="submit" class="editButton" form="' + i + '-editForm" value="Save">' + '</input>');
+          var tempValName = $(`#${i}-Name`).html();
+          var tempValunit = $(`#${i}-unit`).html();
+          var tempValLUC = $(`#${i}-LUC`).html();
+          var tempValMUC = $(`#${i}-MUC`).html();
+          $(`#${i}-Name`).html($(`<input type="text" id="tempName" value="${tempValName}" form="${i}-editForm">` + `</input>`));
+          $(`#${i}-unit`).html($(`<input type="text" id="tempUnit" value="${tempValunit}" form="${i}-editForm">` + `</input>`));
+          $(`#${i}-LUC`).html($(`<input type="text" id="tempLUC" value="${tempValLUC}" form="${i}-editForm">` + `</input>`));
+          $(`#${i}-MUC`).html($(`<input type="text" id="tempMUC" value="${tempValMUC}" form="${i}-editForm">` + `</input>`));
+          $(`#${i}-edit`).hide();
+          $(`#${i}-save`).show();
+          //$(`#${i}-edit`).replaceWith('<input id="save" type="submit" class="editButton" form="' + i + '-editForm" value="Save">' + '</input>');
 
 
           $(`#${i}-editForm`).submit(function(e) {
             dataArray[i][0] = $("#tempName").val();
             $(`#${i}-Name`).html($("#tempName").val());
+
             dataArray[i][1] = $("#tempUnit").val();
             $(`#${i}-unit`).html($("#tempUnit").val());
+
             dataArray[i][2] = $("#tempLUC").val();
             $(`#${i}-LUC`).html($("#tempLUC").val());
+
             dataArray[i][3] = $("#tempMUC").val();
             $(`#${i}-MUC`).html($("#tempMUC").val());
-            $("#save").replaceWith('<button id="' + i + '-edit" class="editButton" type="button">Edit</button>');
+
+
+            $(`#${i}-edit`).show();
+            $(`#${i}-save`).hide();
+            //$("#save").replaceWith('<button id="' + i + '-edit" class="editButton" type="button">Edit</button>');
             window.gsheets.updateData(dataArray);
             e.preventDefault();
           });
