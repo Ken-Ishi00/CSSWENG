@@ -87,17 +87,13 @@ async function initializeData() {
         }
 
         $(`#${i}-est-add`).click(function(){
-          if(!exists(estArray, $(`#${i}-Name`).html()))
-          {
             var estName = $(`#${i}-Name`).html();
             var estUnit = $(`#${i}-unit`).html();
             var estLUC = parseInt($(`#${i}-LUC`).html());
             var estMUC = parseInt($(`#${i}-MUC`).html());
             var estTotal = estLUC + estMUC;
             $("#est-list").append(
-              `<tr>
-                <form id="${estSize-1}-est-editForm"></form>
-                <td>${estSize}</td>
+              `<tr id="est-item-${estSize-1}">
                 <td>${estName}</td>
                 <td id="${estSize-1}-est-qty">1</td>
                 <td>${estUnit}</td>
@@ -107,9 +103,9 @@ async function initializeData() {
                 <td id="${estSize-1}-est-MAC">${estMUC}</td>
                 <td id="${estSize-1}-est-total">${estTotal}</td>
                 <td>
-                  <input id="${i}-est-save" type="submit" class="button-3 est-saveButton" form="${estSize-1}-est-editForm" style="float: right" value="Save"></input>
-                  <button id="${i}-est-edit" class="button-3 est-EditButton" role="button" style="float: right">Edit Qty</button>
-                  <button id="${i}-est-delete" class="est-delButton" role="button" style="float: right">Delete</button>
+                  <button id="${estSize-1}-est-save" type="button" class="button-3 est-saveButton" style="float: right">Save</input>
+                  <button id="${estSize-1}-est-edit" class="button-3 est-editButton" type="button" style="float: right">Edit Qty</button>
+                  <button id="${estSize-1}-est-delete" class="est-delButton" type="button" style="float: right">Delete</button>
                 </td>
               </tr>
               `
@@ -126,25 +122,6 @@ async function initializeData() {
             ];
             estArray.push(tempEstArray);
             estSize++;
-          }
-          else
-          {
-            for(n=0;n<estArray.length;n++)
-            {
-              if(estArray[n][0] == $(`#${i}-Name`).html())
-              {
-                estArray[n][1]++;
-                estArray[n][4] = estArray[n][3] * estArray[n][1];
-                estArray[n][6] = estArray[n][5] * estArray[n][1];
-                estArray[n][7] = estArray[n][6] + estArray[n][4];
-                $(`#${n}-est-qty`).html(estArray[n][1]);
-                $(`#${n}-est-LAC`).html(estArray[n][4]);
-                $(`#${n}-est-MAC`).html(estArray[n][6]);
-                $(`#${n}-est-total`).html(estArray[n][7]);
-                estSize++;
-              }
-            }
-          }
         });
     });
 
