@@ -12,35 +12,15 @@ $("#submit").click(function () {
     } else {
       $("#error-form").hide();
       //var item-amount
-      var cItemName = $("#item-name-form").val();
-      var cItemUnit = $("#unit-form").val();
-      var cItemLUC = $("#labor-unit-cost-form").val();
-      var cItemMUC = $("#material-unit-cost-form").val();
-      $("#item-list").append(
-        ` <tr>
-            <td></td>
-            <td class="item item-name">${cItemName}</td>
-            <td class="item item-unit">${cItemUnit}</td>
-            <td class="item item-LUC">${cItemLUC}</td>
-            <td class="item item-MUC">${cItemMUC}</td>
-            <td>
-              <button id="${
-                dataArray.length + 1
-              }-edit" class="editButton" type="button" onclick="editFunction()">Edit</button>
-              <button id="${
-                dataArray.length + 1
-              }-del" class="delButton" type="button" onclick="delFunction()">Delete</button>
-            </td>
-          </tr>
-        `
-      );
-
-      var tempArray = [
+      tempArray = [
+        generateUniqueID(),
         $("#item-name-form").val(),
         $("#unit-form").val(),
         $("#labor-unit-cost-form").val(),
-        $("#material-unit-cost-form").val(),
+        $("#material-unit-cost-form").val()
       ];
+
+      addItemToCanvas(tempArray, dataArray.length + 1)
 
       $("#item-name-form").val("");
       $("#unit-form").val("");
