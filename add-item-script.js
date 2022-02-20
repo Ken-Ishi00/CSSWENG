@@ -20,7 +20,7 @@ $("#submit").click(function () {
         $("#material-unit-cost-form").val()
       ];
 
-      addItemToCanvas(tempArray, dataArray.length + 1)
+      addItemToCanvas(tempArray, dataArray.length)
 
       $("#item-name-form").val("");
       $("#unit-form").val("");
@@ -29,8 +29,6 @@ $("#submit").click(function () {
 
       dataArray.push(tempArray);
       window.gsheets.updateData(dataArray);
-
-      $("#submit").click(window.location.reload());
     }
   }
 });
