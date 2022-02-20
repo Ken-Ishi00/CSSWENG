@@ -1,8 +1,10 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const { google } = require("googleapis");
 const keys = require("./keys.json");
+const fs = require('fs');
+const fsp = require('fs').promises;
 
 const client = new google.auth.JWT(keys.client_email, null, keys.private_key, [
   "https://www.googleapis.com/auth/spreadsheets",
@@ -67,6 +69,47 @@ async function gsdelete(cl, index) {
   });
 }
 
+function saveFile(estArray) {
+  dialog.showSaveDialog()
+  .then(function (response) {
+    if (!response.canceled) {
+      fs.writeFile(response.filePath, estArray.toString(), function (error) {
+        if (error) {
+          console.error(error);
+        }
+      });
+    }
+  })
+  .catch(function (error) {
+    console.error(error);
+  });
+}
+
+async function loadFile() {
+  return await dialog.showOpenDialog({ properties: ["openFile"] });
+}
+
+function exportCSV(estArray) {
+  let result = ""
+  estArray.forEach((item, i) => {
+    result += item.toString() + "\n";
+  });
+
+  dialog.showSaveDialog()
+  .then(function (response) {
+    if (!response.canceled) {
+      fs.writeFile(response.filePath + ".csv", result, function (error) {
+        if (error) {
+          console.error(error);
+        }
+      });
+    }
+  })
+  .catch(function (error) {
+    console.error(error);
+  });
+}
+
 ipcMain.handle("get-data", async (event, arg) => {
   const dataArray = await gsget(client);
   return dataArray;
@@ -78,6 +121,31 @@ ipcMain.on("update-data", (event, arg) => {
 
 ipcMain.on("delete-row", (event, arg) => {
   gsdelete(client, arg);
+});
+
+ipcMain.on("save", (event, arg) => {
+  saveFile(arg);
+});
+
+ipcMain.handle("load", async (event, arg) => {
+  const result = await loadFile();
+  if (!result.canceled) {
+    const data = await fsp.readFile(result.filePaths[0], "utf-8");
+    let temp = data.split(",");
+    let array = [];
+    let i,j, temporary, chunk = 8;
+    for (i = 0,j = temp.length; i < j; i += chunk) {
+      let temporary = temp.slice(i, i + chunk);
+      array.push(temporary);
+    }
+    return array;
+  } else {
+    return;
+  }
+});
+
+ipcMain.on("export", (event, arg) => {
+  exportCSV(arg);
 });
 
 function createWindow() {

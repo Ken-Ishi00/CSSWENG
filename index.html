@@ -13,6 +13,7 @@
     <script src="./jquery-3.6.0.min.js"></script>
     <script src="./estimate-script.js" defer></script>
     <script src="./add-item-script.js" defer></script>
+    <script src="./saving.js" defer></script>
     <link href="./styles.css" rel="stylesheet" />
     <title>Estimator</title>
   </head>
@@ -93,9 +94,9 @@
         <div id="est-main">
           <div id="est-title-div">
             <h1 id="est-title">Estimate items</h1>
-            <button class="est-button">Save</button>
-            <button class="est-button">Load</button>
-            <button class="est-button">Export</button>
+            <button id="est-save" class="est-button">Save</button>
+            <button id="est-load" class="est-button">Load</button>
+            <button id="est-export" class="est-button">Export</button>
             <p id="notice">
               Note: Don't forget to Save/Load/Export before exiting!
             </p>

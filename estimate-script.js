@@ -1,5 +1,5 @@
-var estArray = [];
-var estSize = 1;
+estArray = [];
+estSize = 1;
 $("#est-list").on("click", ".est-editButton", function () {
   var oldQty = this.parentElement.parentElement.children[1].textContent;
   var index = this.parentElement.parentElement.children[1].id.slice(0, 1);

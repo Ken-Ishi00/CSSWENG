@@ -10,6 +10,14 @@ contextBridge.exposeInMainWorld("gsheets", {
   deleteRow: (row) => ipcRenderer.send("delete-row", row),
 });
 
+contextBridge.exposeInMainWorld("file", {
+  save: (estArray) => ipcRenderer.send("save", estArray),
+  load: async () => {
+    return await ipcRenderer.invoke("load");
+  },
+  exportCSV: (estArray) => ipcRenderer.send("export", estArray)
+})
+
 window.addEventListener("DOMContentLoaded", () => {
   const replaceText = (selector, text) => {
     const element = document.getElementById(selector);
