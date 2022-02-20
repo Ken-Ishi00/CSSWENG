@@ -41,7 +41,7 @@ async function gsupdate(cl, dataArray) {
     resource: { values: dataArray },
   };
 
-  let res = await gsapi.spreadsheets.values.update(updateOptions);
+  gsapi.spreadsheets.values.update(updateOptions);
 }
 
 async function gsdelete(cl, index) {
