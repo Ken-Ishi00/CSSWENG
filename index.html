@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
     <script src="./renderer.js" defer></script>
     <script src="./script.js" defer></script>
     <script src="./jquery-3.6.0.min.js"></script>
     <script src="./estimate-script.js" defer></script>
     <script src="./add-item-script.js" defer></script>
-    <link href="./styles.css" rel="stylesheet">
+    <link href="./styles.css" rel="stylesheet" />
     <title>Estimator</title>
   </head>
   <body>
@@ -24,8 +27,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th>
-              </th>
+              <th></th>
               <th>
                 <h2>Item Name</h2>
               </th>
@@ -41,9 +43,7 @@
               <th></th>
             </tr>
           </thead>
-          <tbody id="item-list">
-
-          </tbody>
+          <tbody id="item-list"></tbody>
         </table>
 
         <div id="add-item">
@@ -51,16 +51,37 @@
 
           <div id="add-form-div">
             <form id="add-form">
-              <label for="item-name-form">Item Name:</label><br>
-              <input type="text" id="item-name-form" name="item-name-form" class="add-form-input"><br>
-              <label for="unit-form">Unit:</label><br>
-              <input type="text" id="unit-form" name="unit-form" class="add-form-input"><br>
-              <label for="labor-unit-cost-form">Labor Unit Cost:</label><br>
-              <input type="number" id="labor-unit-cost-form" name="labor-unit-cost-form" class="add-form-input"><br>
-              <label for="material-unit-cost-form">Material Unit Cost:</label><br>
-              <input type="number" id="material-unit-cost-form" name="material-unit-cost-form" class="add-form-input"><br>
+              <label for="item-name-form">Item Name:</label><br />
+              <input
+                type="text"
+                id="item-name-form"
+                name="item-name-form"
+                class="add-form-input"
+              /><br />
+              <label for="unit-form">Unit:</label><br />
+              <input
+                type="text"
+                id="unit-form"
+                name="unit-form"
+                class="add-form-input"
+              /><br />
+              <label for="labor-unit-cost-form">Labor Unit Cost:</label><br />
+              <input
+                type="number"
+                id="labor-unit-cost-form"
+                name="labor-unit-cost-form"
+                class="add-form-input"
+              /><br />
+              <label for="material-unit-cost-form">Material Unit Cost:</label
+              ><br />
+              <input
+                type="number"
+                id="material-unit-cost-form"
+                name="material-unit-cost-form"
+                class="add-form-input"
+              /><br />
 
-              <input type="button" name="submit" id="submit" value="Submit">
+              <input type="button" name="submit" id="submit" value="Submit" />
             </form>
 
             <p id="error-form"></p>
@@ -74,39 +95,36 @@
             <button class="est-button">Save</button>
             <button class="est-button">Load</button>
             <button class="est-button">Export</button>
-            <p id="notice">Note: Don't forget to Save/Load/Export before exiting!</p>
+            <p id="notice">
+              Note: Don't forget to Save/Load/Export before exiting!
+            </p>
           </div>
-        <div id="est-table">
-          <table class="content-table">
-            <thead>
-              <tr>
-                <th width="20%">Name</th>
-                <th width="1%">Qty</th>
-                <th width="1%">Unit</th>
-                <th width="15%">Labor Unit Cost</th>
-                <th width="15%">Labor Amount Cost</th>
-                <th width="15%">Material Unit Cost</th>
-                <th width="15%">Material Amount Cost</th>
-                <th width="1%">Total</th>
-                <th width="1%">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="est-list">
-
-            </tbody>
-          </table>
-        </div>
+          <div id="est-table">
+            <table class="content-table">
+              <thead>
+                <tr>
+                  <th width="20%">Name</th>
+                  <th width="1%">Qty</th>
+                  <th width="1%">Unit</th>
+                  <th width="15%">Labor Unit Cost</th>
+                  <th width="15%">Labor Amount Cost</th>
+                  <th width="15%">Material Unit Cost</th>
+                  <th width="15%">Material Amount Cost</th>
+                  <th width="1%">Total</th>
+                  <th width="1%">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="est-list"></tbody>
+            </table>
+          </div>
         </div>
 
         <div id="add-item-est">
           <h1 id="add-est-title">Add Item</h1>
           <table id="add-est-table">
-            <tbody id="estimate-list">
-
-            </tbody>
+            <tbody id="estimate-list"></tbody>
           </table>
         </div>
-
       </div>
     </div>
     <!-- You can also require other files to run in this process -->
