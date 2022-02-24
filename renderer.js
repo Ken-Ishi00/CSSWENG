@@ -4,11 +4,3 @@
 // `nodeIntegration` is turned off. Use `preload.js` to
 // selectively enable features needed in the rendering
 // process.
-
-async function initializeData() {
-  dataArray = await window.gsheets.getData();
-  dataArray.forEach((item, i) => {
-    addItemToCanvas(item, i);
-  });
-}
-initializeData();
